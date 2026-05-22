@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saveen Chair Service Point | Chennai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brown: #5C3D2E;
+      --gold: #C9A84C;
+      --cream: #F5F0E8;
+      --dark: #1A1008;
+      --light: #FBF8F3;
+      --accent: #E07B39;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(251,248,243,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(92,61,46,0.1);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+    }
+
+    .logo span { color: var(--gold); }
+
+    nav ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav ul a:hover { color: var(--gold); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      background: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: -50px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(92,61,46,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-text { position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--brown);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #6b5a4e;
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp 0.8s 0.6s ease both;
+    }
+
+    .btn-primary {
+      background: var(--brown);
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      border: 2px solid var(--brown);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(224,123,57,0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--brown);
+      padding: 0.9rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 2px solid var(--brown);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1s 0.3s ease both;
+    }
+
+    .chair-illustration {
+      width: 380px;
+      height: 380px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10rem;
+      box-shadow: 0 20px 60px rgba(92,61,46,0.15);
+      position: relative;
+    }
+
+    .chair-illustration::before {
+      content: '';
+      position: absolute;
+      inset: -15px;
+      border-radius: 50%;
+      border: 2px dashed rgba(201,168,76,0.4);
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(92,61,46,0.15);
+      animation: fadeUp 0.8s 0.8s ease both;
+    }
+
+    .stat h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--brown);
+      font-weight: 700;
+    }
+
+    .stat p {
+      font-size: 0.85rem;
+      color: #8a7060;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--brown);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: #7a6a5e;
+      max-width: 550px;
+      line-height: 1.7;
+    }
+
+    /* ABOUT */
+    #about {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-visual {
+      background: var(--brown);
+      border-radius: 1rem;
+      padding: 3rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-visual::before {
+      content: '🪑';
+      position: absolute;
+      font-size: 8rem;
+      right: -1rem;
+      bottom: -1rem;
+      opacity: 0.15;
+    }
+
+    .about-visual h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-visual p {
+      opacity: 0.85;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .about-highlight {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 0.3rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1.5rem;
+    }
+
+    .about-content p {
+      color: #6b5a4e;
+      line-height: 1.8;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--brown);
+      font-weight: 500;
+    }
+
+    .feature-item span:first-child { font-size: 1.2rem; }
+
+    /* SERVICES */
+    #services { background: var(--light); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(92,61,46,0.1);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(92,61,46,0.12);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--brown);
+      margin-bottom: 0.8rem;
+    }
+
+    .service-card p {
+      color: #7a6a5e;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .service-price {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* GALLERY */
+    #gallery { background: var(--cream); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      background: var(--brown);
+      border-radius: 0.8rem;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    .gallery-item:hover { transform: scale(0.98); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,16,8,0.8), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay span {
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .g1 { background: linear-gradient(135deg, #5C3D2E, #8B6347); }
+    .g2 { background: linear-gradient(135deg, #C9A84C, #E8C76A); }
+    .g3 { background: linear-gradient(135deg, #E07B39, #F09A58); }
+    .g4 { background: linear-gradient(135deg, #3D2B1F, #5C3D2E); }
+    .g5 { background: linear-gradient(135deg, #8B6347, #C9A84C); }
+
+    /* CONTACT */
+    #contact { background: var(--brown); color: white; }
+
+    #contact .section-title { color: white; }
+    #contact .section-label { color: var(--gold); }
+    #contact .section-sub { color: rgba(255,255,255,0.75); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+
+    .contact-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .contact-item-icon {
+      width: 48px; height: 48px;
+      background: rgba(201,168,76,0.2);
+      border-radius: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-item p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 0.5rem;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.4); }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--gold); }
+
+    .contact-form textarea { height: 120px; resize: none; }
+
+    .contact-form select option { background: var(--brown); color: white; }
+
+    .btn-submit {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.03em;
+    }
+
+    .btn-submit:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+
+    footer span { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; }
+      .form-row { grid-template-columns: 1fr; }
+      .stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Saveen <span>Chair</span> Service</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-text">
+      <div class="hero-badge">✦ Chennai's Trusted Chair Experts</div>
+      <h1>Repair. Restore.<br><em>Reinvent</em> Your Chairs.</h1>
+      <p class="hero-desc">From worn-out office chairs to antique wooden pieces — Saveen Chair Service Point brings your chairs back to life with expert craftsmanship and quality materials.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#services" class="btn-secondary">Our Services</a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <h3>500+</h3>
+          <p>Chairs Repaired</p>
+        </div>
+        <div class="stat">
+          <h3>10+</h3>
+          <p>Years Experience</p>
+        </div>
+        <div class="stat">
+          <h3>98%</h3>
+          <p>Happy Customers</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="chair-illustration">🪑</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">Who We Are</div>
+    <div class="about-grid">
+      <div class="about-visual">
+        <h3>Crafting Comfort Since 2014</h3>
+        <p>Based in Chennai, we have been the go-to destination for chair repairs, restorations, and sales for over a decade. Every chair tells a story — we help you continue yours.</p>
+        <div class="about-highlight">📍 Serving all of Chennai</div>
+      </div>
+      <div class="about-content">
+        <div class="section-title">About Saveen Chair Service Point</div>
+        <p>We are a dedicated chair service center in Chennai, specializing in the repair, restoration, and sale of all types of chairs — from office and ergonomic chairs to wooden and antique furniture.</p>
+        <p>Our team of skilled craftsmen uses high-quality materials and proven techniques to ensure every chair we work on looks and feels brand new. We take pride in our attention to detail and commitment to customer satisfaction.</p>
+        <div class="about-features">
+          <div class="feature-item"><span>✅</span> Expert Craftsmen</div>
+          <div class="feature-item"><span>✅</span> Quality Materials</div>
+          <div class="feature-item"><span>✅</span> Affordable Pricing</div>
+          <div class="feature-item"><span>✅</span> Quick Turnaround</div>
+          <div class="feature-item"><span>✅</span> Home Pickup</div>
+          <div class="feature-item"><span>✅</span> Warranty on Work</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">What We Do</div>
+    <div class="section-title">Our Services</div>
+    <p class="section-sub">We offer a full range of chair repair and sales services to meet all your needs.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Chair Repair</h3>
+        <p>Broken frames, wobbly legs, damaged armrests — we fix all types of structural damage and bring your chair back to full strength.</p>
+        <div class="service-price">Starting from ₹299</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🪡</div>
+        <h3>Upholstery & Foam</h3>
+        <p>Torn fabric, flat cushions, worn-out foam? We replace and re-upholster with premium materials in a variety of colors and textures.</p>
+        <div class="service-price">Starting from ₹499</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Office Chair Service</h3>
+        <p>Hydraulic cylinder replacement, wheel/caster repair, tilt mechanism fixes — complete servicing for all office and gaming chairs.</p>
+        <div class="service-price">Starting from ₹399</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Restoration & Polish</h3>
+        <p>Antique and wooden chair restoration, sanding, painting, and polishing to give your old chairs a brand-new look and feel.</p>
+        <div class="service-price">Starting from ₹599</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🪑</div>
+        <h3>Chair Sales</h3>
+        <p>Browse our collection of new and refurbished chairs — office chairs, dining chairs, plastic chairs, and more at great prices.</p>
+        <div class="service-price">Starting from ₹1,499</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚚</div>
+        <h3>Home Pickup & Delivery</h3>
+        <p>We offer convenient home pickup and delivery across Chennai. No need to carry heavy chairs — we come to you!</p>
+        <div class="service-price">Available across Chennai</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-label">Our Work</div>
+    <div class="section-title">Gallery</div>
+    <p class="section-sub">A glimpse of the chairs we have repaired, restored, and sold over the years.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item g1">
+        🪑
+        <div class="gallery-overlay"><span>Office Chair Restoration</span></div>
+      </div>
+      <div class="gallery-item g2">
+        🛋️
+        <div class="gallery-overlay"><span>Upholstery Work</span></div>
+      </div>
+      <div class="gallery-item g3">
+        🪵
+        <div class="gallery-overlay"><span>Wooden Chair Repair</span></div>
+      </div>
+      <div class="gallery-item g4">
+        ⚙️
+        <div class="gallery-overlay"><span>Mechanism Repair</span></div>
+      </div>
+      <div class="gallery-item g5">
+        ✨
+        <div class="gallery-overlay"><span>Before & After Polish</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Get In Touch</div>
+    <div class="section-title">Contact Us</div>
+    <p class="section-sub">Get a free quote or book a pickup today. We're happy to help!</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>Saveen Chair Service Point<br>Chennai, Tamil Nadu</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <p>+91 98765 43210</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div>
+            <h4>Working Hours</h4>
+            <p>Monday – Saturday: 9am – 7pm<br>Sunday: 10am – 4pm</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🚚</div>
+          <div>
+            <h4>Pickup Service</h4>
+            <p>Available across all areas in Chennai</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <input type="text" placeholder="Your Name" />
+          <input type="tel" placeholder="Phone Number" />
+        </div>
+        <select>
+          <option value="" disabled selected>Select Service</option>
+          <option>Chair Repair</option>
+          <option>Upholstery & Foam</option>
+          <option>Office Chair Service</option>
+          <option>Restoration & Polish</option>
+          <option>Chair Sales</option>
+          <option>Home Pickup & Delivery</option>
+        </select>
+        <textarea placeholder="Describe your chair issue or requirement..."></textarea>
+        <button class="btn-submit">Send Message ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Saveen Chair Service Point</span> · Chennai, Tamil Nadu · All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
